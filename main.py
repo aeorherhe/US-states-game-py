@@ -16,10 +16,13 @@ while len(total_guesses) < 50:
                                   prompt="What's the state name?").title()
 
     if user_input == "Exit":
-        missed_states = []
-        for state in all_states:
-            if state not in total_guesses:
-                missed_states.append(state)
+        # using comprehension
+        missed_states = [state for state in all_states if state not in total_guesses ]
+
+        # use regular for loop
+        # for state in all_states:
+        #     if state not in total_guesses:
+        #         missed_states.append(state)
         new_data = pandas.DataFrame(missed_states)
         new_data.to_csv("states_to_learn.csv")
         break
